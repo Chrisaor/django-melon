@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Song search{% endblock %}
+{% block content %}
+<form action="" method="POST">
+	{% csrf_token %}
+		<label for="name">노래 검색</label>
+		<input id="name" type="text" name="name" class="form-control">
+    <button type="submit" class="btn btn-primary">검색</button>
+</form>
+{% endblock %}
