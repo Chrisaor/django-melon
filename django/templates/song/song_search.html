@@ -5,7 +5,14 @@
 <form action="" method="POST">
 	{% csrf_token %}
 		<label for="name">노래 검색</label>
-		<input id="name" type="text" name="name" class="form-control">
+		<input id="name" type="text" name="keyword" class="form-control">
     <button type="submit" class="btn btn-primary">검색</button>
+
 </form>
+<ul>
+	{% for song in songs %}
+	<li>{{ song.title }}</li>
+	{% endfor %}
+</ul>
+
 {% endblock %}
