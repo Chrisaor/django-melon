@@ -1,29 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1><a href="{% url 'song:song-search' %}">노래 검색</a></h1>
-<form action="" method="get">
-		<label for="name">노래 검색</label>
-		<input id="name" type="text" name="keyword" class="form-control">
-    <button type="submit" class="btn btn-primary">검색</button>
+<div>
+	<h1><a href="{% url 'song:song-search' %}">노래 검색</a></h1>
+	<!--
+		1. song/urls.py에 app_name지정
+		2. 각 path에 name지정
+		3. <app_name>:<url_name> 형식을 사용
+	-->
+	<form action="" method="get">
+		<input type="text" name="keyword" value="{{ request.GET.keyword }}">
+		<button type="submit">검색</button>
+	</form>
 
-</form>
-<h3>아티스트명에 포함</h3>
-<ul>
-	{% for song in songs_from_artists %}
-	<li>{{ song.title }}</li>
+	<!--for문을 순회하면서 include태그를 순회문 안에서 1번만 사용해서 3개를 출력할 수 있도록-->
+	<!--views.py의 내용을 수정-->
+	{% for song_info in song_infos %}
+		{% include 'include/song_search_result.html' with type=song_info.type songs=song_info.songs only %}
 	{% endfor %}
-</ul>
-<h3>앨범명에 포함</h3>
-<ul>
-	{% for song in songs_from_albums %}
-	<li>{{ song.title }}</li>
-	{% endfor %}
-</ul>
-<h3>노래 제목에 포함</h3>
-<ul>
-	{% for song in songs_from_title %}
-	<li>{{ song.title }}</li>
-	{% endfor %}
-</ul>
+
+	<!--{% include 'include/song_search_result.html' with type='아티스트명' songs=songs_from_artists only %}-->
+	<!--{% include 'include/song_search_result.html' with type='앨범명' songs=songs_from_albums only %}-->
+	<!--{% include 'include/song_search_result.html' with type='노래제목' songs=songs_from_title only %}-->
+
+</div>
 {% endblock %}
