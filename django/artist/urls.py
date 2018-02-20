@@ -4,8 +4,8 @@ from . import views
 
 app_name = 'artist'
 urlpatterns = [
-    # aritst_list view가
-    # /artist/ 에서 출력되도록 path설정
     path('', views.artist_list, name='artist-list'),
     path('add/', views.artist_add, name='artist-add'),
+    path('search/melon/', views.artist_search_from_melon, name='artist-search-from-melon'),
+    path('search/melon/add', views.artist_add_from_melon, name='artist-add-from-melon'),
 ]

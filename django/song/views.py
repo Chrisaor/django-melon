@@ -61,5 +61,4 @@ def song_search(request):
                 'songs': Song.objects.filter(q),
             })
 
-    context['type'] = 'ASDF'
     return render(request, 'song/song_search.html', context)
