@@ -39,7 +39,7 @@ def song_search(request):
                 q=Q(album__artists__name__contains=keyword)),
             SongInfo(
                 type='앨범명',
-                q=Q(albu__title__contains=keyword)),
+                q=Q(album__title__contains=keyword)),
             SongInfo(
                 type='노래제목',
                 q=Q(title__contains=keyword)),
