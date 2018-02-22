@@ -13,10 +13,6 @@ class Album(models.Model):
         upload_to='album',
         blank=True,
     )
-    artists = models.ManyToManyField(
-        Artist,
-        verbose_name='아티스트 목록',
-    )
     release_date = models.DateField()
 
     @property
